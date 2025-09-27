@@ -15,9 +15,9 @@ The analysis is performed through SQL queries and Python scripts that extract an
 ### Example Analytics
 - Top 10 best-selling games worldwide  
 ![best-selling games](query_result_screenshots/bestselling_games.png)
-- Top regions by sales  
+- Top regions by sales
 ![best-selling games](query_result_screenshots/regions_by_sales.png)
-- Top genres by game count  
+- Top genres by game count
 ![best-selling games](query_result_screenshots/genres_by_game_count.png)
 
 
