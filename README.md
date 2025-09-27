@@ -12,19 +12,8 @@ This project focuses on analyzing **global video game sales** using a PostgreSQL
 We explore which games, genres, platforms, publishers, and regions drive the most sales, and how these patterns evolve over time.  
 The analysis is performed through SQL queries and Python scripts that extract and summarize key performance metrics.
 
-### Example Analytics
-- Top 10 best-selling games worldwide
-  
-![best-selling games](query_result_screenshots/bestselling_games.png)
-
-- Top regions by sales
-  
-![best-selling games](query_result_screenshots/regions_by_sales.png)
-
-- Top genres by game count
-  
-![best-selling games](query_result_screenshots/genres_by_game_count.png)
-
+### ERD Diagram
+![erd](ERD_Diagram.png)
 
 
 ## How to Run the Project
@@ -63,44 +52,6 @@ python main.py
 ```
 This will execute all predefined SQL queries and print results in the terminal.
 
----
-
-## Sample SQL Queries
-Below are example SQL queries used in the project to analyze the video game sales dataset:
-
-### Top 10 Best-Selling Games Worldwide
-```sql
-select g.game_name, SUM(rs.num_sales) as total_sales
-from game as g 
-join game_publisher as gpub on g.id = gpub.game_id
-join game_platform as gplat on gpub.id = gplat.game_publisher_id
-join region_sales rs on gplat.id = rs.game_platform_id
-group by g.game_name
-order by total_sales desc
-limit 10
-```
-
-### Top regions by sales
-```sql
-select r.region_name, sum(rs.num_sales) as total_sales
-from region as r
-join region_sales as rs on r.id = rs.region_id
-group by r.region_name
-order by total_sales DESC
-limit 3
-```
-
-### Top genres by game count
-```sql
-select ge.genre_name, sum(rs.num_sales) as total_sales
-from genre as ge
-join game as g on ge.id = g.genre_id
-join game_publisher as gpub on g.id = gpub.game_id
-join game_platform as gplat on gpub.id = gplat.game_publisher_id
-join region_sales as rs on gplat.id = rs.game_platform_id
-group by ge.genre_name
-order by total_sales desc
-```
 
 
 ## Tools & Resources
