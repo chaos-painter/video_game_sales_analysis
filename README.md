@@ -30,25 +30,19 @@ cd videogame-analytics
 - Run the dump files.
 
 ### 3. Configure Database Connection
-Update `DB_CONFIG` in `main.py` with your PostgreSQL credentials:
+Update `DB_URL` in `config.py` with your PostgreSQL credentials:
 ```python
-DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "dbname": "videogames",
-    "user": "postgres",
-    "password": "yourpassword"
-}
+DB_URL = "postgresql+psycopg2://{username}:{password}@localhost:5432/{database}"
 ```
 
 ### 4. Install Python Dependencies
 ```bash
-pip install psycopg2
+pip install -r requirements.txt
 ```
 
 ### 5. Run Analytics
 ```bash
-python main.py
+python analytics.py
 ```
 This will execute all predefined SQL queries and print results in the terminal.
 
@@ -56,7 +50,8 @@ This will execute all predefined SQL queries and print results in the terminal.
 
 ## Tools & Resources
 - **PostgreSQL**: Relational database to store and query video game sales data.
-- **Python (psycopg2)**: To connect to PostgreSQL and run SQL queries.
+- **Sqlalchemy, psycopg2**: To connect to PostgreSQL and run SQL queries.
+- **Matplotlib, plotly, openpyxl**: To create charts, time sliders and export to an excel file respectively.
 - **SQL**: For data extraction, aggregation, and analytics.
 - **Git/GitHub**: For version control and collaboration.
 - **Data Source**: Video Game Sales dataset (structured into tables: games, genres, publishers, platforms, regions, and sales).

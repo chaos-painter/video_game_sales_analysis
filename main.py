@@ -110,8 +110,6 @@ def run_queries():
         conn = psycopg2.connect(**DB_CONFIG)
         cur = conn.cursor()
 
-        cur.execute("set search_path to video_games;")
-
         for name, query in QUERIES.items():
             print(f"\n--- {name.replace('_',' ').title()} ---")
             cur.execute(query)
