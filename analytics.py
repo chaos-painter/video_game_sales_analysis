@@ -55,7 +55,7 @@ def generate_charts():
         where game_rank <= 15
         union all
         select 
-            "Others" as platform_name, 
+            'Others' as platform_name, 
             sum(game_count) as game_count
         from ranked_platforms
         where game_rank > 15;
@@ -67,7 +67,7 @@ def generate_charts():
         join game_publisher as gpub on g.id = gpub.game_id
         join game_platform as gplat on gpub.id = gplat.game_publisher_id
         join region_sales as rs on gplat.id = rs.game_platform_id
-        where ge.genre_name = "Puzzle"
+        where ge.genre_name = 'Puzzle'
         group by gplat.release_year
         order by gplat.release_year;
     """,

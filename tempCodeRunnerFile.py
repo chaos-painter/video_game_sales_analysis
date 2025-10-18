@@ -1,1 +1,1 @@
-    category_orders={"release_year": sorted(data['release_year'].unique())}
+        # Add new genres if not present
