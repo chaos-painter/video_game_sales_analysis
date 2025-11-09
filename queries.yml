@@ -1,0 +1,43 @@
+queries:
+  pg_db_size:
+    query: "SELECT pg_size_pretty(pg_database_size(current_database())) AS db_size_pretty, pg_database_size(current_database()) AS db_size_bytes;"
+    metrics:
+      - db_size_bytes:
+          usage: "GAUGE"
+          description: "Database size in bytes"
+      - db_size_pretty:
+          usage: "GAUGE"
+          description: "Database size (pretty)"
+
+  pg_table_count:
+    query: "SELECT COUNT(*) AS table_count FROM information_schema.tables WHERE table_schema = 'public';"
+    metrics:
+      - table_count:
+          usage: "GAUGE"
+          description: "Number of tables"
+
+  pg_row_count:
+    query: "SELECT SUM(reltuples::bigint) AS total_rows FROM pg_class WHERE relkind = 'r';"
+    metrics:
+      - total_rows:
+          usage: "GAUGE"
+          description: "Total rows across tables"
+
+  pg_user_count:
+    query: "SELECT COUNT(*) AS user_count FROM pg_roles WHERE rolcanlogin = true;"
+    metrics:
+      - user_count:
+          usage: "GAUGE"
+          description: "Number of login users" # Added rolcanlogin for accuracy
+
+  pg_read_write_ops:
+    query: "SELECT datname, blks_read, blks_hit FROM pg_stat_database;"
+    metrics:
+      - datname:
+          usage: "LABEL"
+      - blks_read:
+          usage: "COUNTER"
+          description: "Blocks read"
+      - blks_hit:
+          usage: "COUNTER"
+          description: "Blocks hit"
